@@ -1,17 +1,47 @@
 package org.example;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println("=== Анализатор миссий магов ===");
+        System.out.println("Введите путь к файлу миссии:");
+        Scanner scanner = new Scanner(System.in);
+        String filePath = scanner.nextLine();
+        //проверка на пустой файл
+        if (filePath == null || filePath.trim().isEmpty()) {
+            System.out.println("Ошибка: путь к файлу не может быть пустым");
+            return;
         }
+        File file = new File(filePath);
+        // Проверяем, существует ли файл
+        if (!file.exists()) {
+            System.out.println("Ошибка: файл не существует по пути: " + filePath);
+            return;
+        }
+        if (!file.isFile()) {
+            System.out.println("Ошибка: указанный путь не является файлом");
+            return;
+        }
+        if (!file.canRead()) {
+            System.out.println("Ошибка: файл не доступен для чтения");
+            return;
+        }
+        System.out.println("✓ Файл успешно найден и доступен для чтения!");
+        System.out.println("Имя файла: " + file.getName());
+        System.out.println("Размер: " + file.length() + " байт");
+
+        // Пробуем прочитать первые несколько строк
+        try {
+            Path path = Paths.get(filePath);
+            System.out.println("\nПервые 5 строк файла:");
+            Files.lines(path).limit(5).forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("Ошибка при чтении файла: " + e.getMessage());
+        }
+
+        scanner.close();
     }
 }
