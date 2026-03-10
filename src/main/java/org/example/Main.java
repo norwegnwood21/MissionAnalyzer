@@ -1,4 +1,7 @@
 package org.example;
+import org.example.model.Mission;
+import org.example.parser.JsonMissionParser;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +11,6 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Анализатор миссий магов ===");
         System.out.println("Введите путь к файлу миссии:");
         Scanner scanner = new Scanner(System.in);
         String filePath = scanner.nextLine();
@@ -47,6 +49,25 @@ public class Main {
         System.out.println("\n Анализ формата файла ");
         FileFormatDetector.Format format = FileFormatDetector.detectFormat(file);
         System.out.println("Формат: " + format);
+
+        if (format == FileFormatDetector.Format.JSON) {
+            System.out.println("\nПарсинг JSON файла ");
+            JsonMissionParser jsonParser = new JsonMissionParser();
+
+            try {
+                Mission mission = jsonParser.parseFile(file);
+                System.out.println("JSON успешно распарсен");
+
+                // Выводим информацию о миссии
+                mission.printMissionInfo();
+
+            } catch (IOException e) {
+                System.out.println("Ошибка при парсинге JSON: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Парсер для этого формата не реализован");
+        }
 
         scanner.close();
     }
