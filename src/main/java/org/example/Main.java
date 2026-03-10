@@ -1,6 +1,7 @@
 package org.example;
 import org.example.model.Mission;
 import org.example.parser.JsonMissionParser;
+import org.example.parser.XmlMissionParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +66,23 @@ public class Main {
                 System.out.println("Ошибка при парсинге JSON: " + e.getMessage());
                 e.printStackTrace();
             }
-        } else {
+        } else if (format == FileFormatDetector.Format.XML) {
+            System.out.println("\nПарсинг XML файла");
+            XmlMissionParser xmlParser = new XmlMissionParser();
+
+            try {
+                Mission mission = xmlParser.parseFile(file);
+                System.out.println("XML успешно распарсен!");
+                mission.printMissionInfo();
+            } catch (IOException e) {
+                System.out.println("Ошибка при парсинге XML: " + e.getMessage());
+                e.printStackTrace();
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка при преобразовании числа: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        else {
             System.out.println("Парсер для этого формата не реализован");
         }
 
