@@ -1,15 +1,18 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 public class Technique {
     private String name;
     private String type;
-    private String owner;      // владелец
-    private int damage;        //  урон
+    private Sorcerer owner;
+    private int damage;
 
     public Technique() {
     }
 
-    public Technique(String name, String type, String owner, int damage) {
+    public Technique(String name, String type, Sorcerer owner, int damage) {
         this.name = name;
         this.type = type;
         this.owner = owner;
@@ -32,11 +35,11 @@ public class Technique {
         this.type = type;
     }
 
-    public String getOwner() {
+    public Sorcerer getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Sorcerer owner) {
         this.owner = owner;
     }
 
@@ -48,8 +51,25 @@ public class Technique {
         this.damage = damage;
     }
 
+    @JsonSetter("owner")
+    public void setOwnerFromString(String ownerName) {
+        if (ownerName == null || ownerName.isBlank()) {
+            this.owner = null;
+        } else {
+            Sorcerer sorcerer = new Sorcerer();
+            sorcerer.setName(ownerName);
+            this.owner = sorcerer;
+        }
+    }
+
+    @JsonGetter("owner")
+    public String getOwnerAsString() {
+        return owner != null ? owner.getName() : null;
+    }
+
     @Override
     public String toString() {
-        return name + " " + type + " - урон: " + damage + ", владелец: " + owner;
+        return name + " " + type + " урон: " + damage +
+                ", владелец: " + (owner != null ? owner.getName() : "неизвестен");
     }
 }

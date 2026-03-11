@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class TextMissionParser {
-
 
     public Mission parseFile(File file) throws IOException {
         Mission mission = new Mission();
@@ -18,26 +16,20 @@ public class TextMissionParser {
 
         List<String> lines = Files.readAllLines(path);
 
-        Sorcerer currentSorcerer = null;
-        Technique currentTechnique = null;
-
         for (String line : lines) {
             line = line.trim();
-
 
             if (line.isEmpty()) {
                 continue;
             }
 
-
             String[] parts = line.split(":", 2);
             if (parts.length < 2) {
-                continue; // Пропускаем строки без двоеточия
+                continue;
             }
 
             String key = parts[0].trim();
             String value = parts[1].trim();
-
 
             if (key.equals("missionId")) {
                 mission.setMissionId(value);
@@ -67,23 +59,18 @@ public class TextMissionParser {
                 mission.getCurse().setThreatLevel(value);
 
             } else if (key.startsWith("sorcerer[") && key.endsWith("].name")) {
-
-                currentSorcerer = new Sorcerer();
-                currentSorcerer.setName(value);
-                mission.getSorcerers().add(currentSorcerer);
+                getOrCreateSorcerer(mission, value);
 
             } else if (key.startsWith("sorcerer[") && key.endsWith("].rank")) {
-
                 if (!mission.getSorcerers().isEmpty()) {
                     Sorcerer last = mission.getSorcerers().get(mission.getSorcerers().size() - 1);
                     last.setRank(value);
                 }
 
             } else if (key.startsWith("technique[") && key.endsWith("].name")) {
-
-                currentTechnique = new Technique();
-                currentTechnique.setName(value);
-                mission.getTechniques().add(currentTechnique);
+                Technique technique = new Technique();
+                technique.setName(value);
+                mission.getTechniques().add(technique);
 
             } else if (key.startsWith("technique[") && key.endsWith("].type")) {
                 if (!mission.getTechniques().isEmpty()) {
@@ -94,7 +81,8 @@ public class TextMissionParser {
             } else if (key.startsWith("technique[") && key.endsWith("].owner")) {
                 if (!mission.getTechniques().isEmpty()) {
                     Technique last = mission.getTechniques().get(mission.getTechniques().size() - 1);
-                    last.setOwner(value);
+                    Sorcerer owner = getOrCreateSorcerer(mission, value);
+                    last.setOwner(owner);
                 }
 
             } else if (key.startsWith("technique[") && key.endsWith("].damage")) {
@@ -114,6 +102,25 @@ public class TextMissionParser {
         return mission;
     }
 
+    private Sorcerer findSorcererByName(Mission mission, String name) {
+        for (Sorcerer s : mission.getSorcerers()) {
+            if (s.getName() != null && s.getName().equals(name)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    private Sorcerer getOrCreateSorcerer(Mission mission, String name) {
+        Sorcerer found = findSorcererByName(mission, name);
+        if (found != null) {
+            return found;
+        }
+        Sorcerer sorcerer = new Sorcerer();
+        sorcerer.setName(name);
+        mission.getSorcerers().add(sorcerer);
+        return sorcerer;
+    }
 
     public boolean canParse(File file) {
         String name = file.getName().toLowerCase();

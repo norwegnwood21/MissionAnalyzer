@@ -1,4 +1,5 @@
 package org.example;
+
 import org.example.model.Mission;
 import org.example.parser.JsonMissionParser;
 import org.example.parser.TextMissionParser;
@@ -11,30 +12,37 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Введите путь к файлу миссии:");
         Scanner scanner = new Scanner(System.in);
         String filePath = scanner.nextLine();
+
         //проверка на пустой файл
         if (filePath == null || filePath.trim().isEmpty()) {
             System.out.println("Ошибка: путь к файлу не может быть пустым");
             return;
         }
+
         File file = new File(filePath);
+
         // Проверяем, существует ли файл
         if (!file.exists()) {
             System.out.println("Ошибка: файл не существует по пути: " + filePath);
             return;
         }
+
         if (!file.isFile()) {
             System.out.println("Ошибка: указанный путь не является файлом");
             return;
         }
+
         if (!file.canRead()) {
             System.out.println("Ошибка: файл не доступен для чтения");
             return;
         }
+
         System.out.println("Файл успешно найден и доступен для чтения!");
         System.out.println("Имя файла: " + file.getName());
         System.out.println("Размер: " + file.length() + " байт");
@@ -48,6 +56,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла: " + e.getMessage());
         }
+
         System.out.println("\n Анализ формата файла ");
         FileFormatDetector.Format format = FileFormatDetector.detectFormat(file);
         System.out.println("Формат: " + format);
@@ -82,7 +91,7 @@ public class Main {
                 System.out.println("Ошибка при преобразовании числа: " + e.getMessage());
                 e.printStackTrace();
             }
-        } else if (format == FileFormatDetector.Format.TEXT){
+        } else if (format == FileFormatDetector.Format.TEXT) {
             System.out.println("\nПарсинг текстового файла ");
             TextMissionParser textParser = new TextMissionParser();
 
@@ -97,9 +106,7 @@ public class Main {
                 System.out.println("Ошибка при преобразовании числа: " + e.getMessage());
                 e.printStackTrace();
             }
-        }
-
-        else {
+        } else {
             System.out.println("Парсер для этого формата не реализован");
         }
 
