@@ -22,9 +22,6 @@ public class XmlMissionParser {
         return mission;
     }
 
-    public boolean canParse(File file) {
-        return file.getName().toLowerCase().endsWith(".xml");
-    }
 
     private void linkTechniqueOwners(Mission mission) {
         if (mission == null || mission.getTechniques() == null || mission.getSorcerers() == null) {

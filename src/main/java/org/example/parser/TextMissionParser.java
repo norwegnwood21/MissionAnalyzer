@@ -122,8 +122,5 @@ public class TextMissionParser {
         return sorcerer;
     }
 
-    public boolean canParse(File file) {
-        String name = file.getName().toLowerCase();
-        return name.endsWith(".txt") || name.endsWith(".text");
-    }
+
 }

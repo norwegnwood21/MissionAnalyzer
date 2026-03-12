@@ -22,9 +22,6 @@ public class JsonMissionParser {
         return mission;
     }
 
-    public boolean canParse(File file) {
-        return file.getName().toLowerCase().endsWith(".json");
-    }
 
     private void linkTechniqueOwners(Mission mission) {
         if (mission == null || mission.getTechniques() == null || mission.getSorcerers() == null) {
