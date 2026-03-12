@@ -7,15 +7,14 @@ public class Mission {
     private String missionId;
     private String date;
     private String location;
-    private String outcome;     // SUCCESS, FAILURE
-    private int damageCost;      // стоимость ущерба
+    private String outcome;
+    private int damageCost;
 
     private Curse curse;
 
     private List<Sorcerer> sorcerers = new ArrayList<>();
     private List<Technique> techniques = new ArrayList<>();
 
-    // Дополнительные поля
     private String comment;
     private String note;
 
@@ -136,7 +135,7 @@ public class Mission {
             }
         }
 
-        // под комментарии
+
         if (comment != null && !comment.isEmpty()) {
             System.out.println("\n Комментарий");
             System.out.println(comment);
