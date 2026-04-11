@@ -1,151 +1,62 @@
 package org.example.model;
 
+import org.example.model.enums.MissionOutcome;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mission {
     private String missionId;
-    private String date;
+    private LocalDate date;
     private String location;
-    private String outcome;
-    private int damageCost;
-
+    private MissionOutcome outcome = MissionOutcome.UNKNOWN;
+    private Long damageCost;
     private Curse curse;
+    private final List<Sorcerer> sorcerers = new ArrayList<>();
+    private final List<Technique> techniques = new ArrayList<>();
+    private EconomicAssessment economicAssessment;
+    private CivilianImpact civilianImpact;
+    private EnemyActivity enemyActivity;
+    private EnvironmentConditions environmentConditions;
+    private final List<TimelineEvent> operationTimeline = new ArrayList<>();
+    private final List<String> operationTags = new ArrayList<>();
+    private final List<String> supportUnits = new ArrayList<>();
+    private final List<String> recommendations = new ArrayList<>();
+    private String notes;
+    private final List<String> artifactsRecovered = new ArrayList<>();
+    private final List<String> evacuationZones = new ArrayList<>();
+    private final List<String> statusEffects = new ArrayList<>();
 
-    private List<Sorcerer> sorcerers = new ArrayList<>();
-    private List<Technique> techniques = new ArrayList<>();
-
-    private String comment;
-    private String note;
-
-    public Mission() {
-    }
-
-
-    public String getMissionId() {
-        return missionId;
-    }
-
-    public void setMissionId(String missionId) {
-        this.missionId = missionId;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getOutcome() {
-        return outcome;
-    }
-
-    public void setOutcome(String outcome) {
-        this.outcome = outcome;
-    }
-
-    public int getDamageCost() {
-        return damageCost;
-    }
-
-    public void setDamageCost(int damageCost) {
-        this.damageCost = damageCost;
-    }
-
-    public Curse getCurse() {
-        return curse;
-    }
-
-    public void setCurse(Curse curse) {
-        this.curse = curse;
-    }
-
-    public List<Sorcerer> getSorcerers() {
-        return sorcerers;
-    }
-
-    public void setSorcerers(List<Sorcerer> sorcerers) {
-        this.sorcerers = sorcerers;
-    }
-
-    public List<Technique> getTechniques() {
-        return techniques;
-    }
-
-    public void setTechniques(List<Technique> techniques) {
-        this.techniques = techniques;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-
-    public void printMissionInfo() {
-        System.out.println("МИССИЯ: " + missionId);
-        System.out.println("Дата: " + date);
-        System.out.println("Место: " + location);
-        System.out.println("Результат: " + outcome);
-        System.out.println("Ущерб: " + damageCost + " йен");
-
-        System.out.println("\n Проклятие");
-        if (curse != null) {
-            System.out.println(curse);
-        } else {
-            System.out.println("Нет информации о проклятии");
-        }
-
-        System.out.println("\n Маги");
-        if (sorcerers.isEmpty()) {
-            System.out.println("Нет информации об участниках");
-        } else {
-            for (int i = 0; i < sorcerers.size(); i++) {
-                System.out.println((i + 1) + ". " + sorcerers.get(i));
-            }
-        }
-
-        System.out.println("\n Техника");
-        if (techniques.isEmpty()) {
-            System.out.println("Нет информации о техниках");
-        } else {
-            for (int i = 0; i < techniques.size(); i++) {
-                System.out.println((i + 1) + ". " + techniques.get(i));
-            }
-        }
-
-
-        if (comment != null && !comment.isEmpty()) {
-            System.out.println("\n Комментарий");
-            System.out.println(comment);
-        }
-
-        if (note != null && !note.isEmpty()) {
-            System.out.println("\n Примечание ");
-            System.out.println(note);
-        }
-
-
-    }
+    public String getMissionId() { return missionId; }
+    public void setMissionId(String missionId) { this.missionId = missionId; }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+    public MissionOutcome getOutcome() { return outcome; }
+    public void setOutcome(MissionOutcome outcome) { this.outcome = outcome; }
+    public Long getDamageCost() { return damageCost; }
+    public void setDamageCost(Long damageCost) { this.damageCost = damageCost; }
+    public Curse getCurse() { return curse; }
+    public void setCurse(Curse curse) { this.curse = curse; }
+    public List<Sorcerer> getSorcerers() { return sorcerers; }
+    public List<Technique> getTechniques() { return techniques; }
+    public EconomicAssessment getEconomicAssessment() { return economicAssessment; }
+    public void setEconomicAssessment(EconomicAssessment economicAssessment) { this.economicAssessment = economicAssessment; }
+    public CivilianImpact getCivilianImpact() { return civilianImpact; }
+    public void setCivilianImpact(CivilianImpact civilianImpact) { this.civilianImpact = civilianImpact; }
+    public EnemyActivity getEnemyActivity() { return enemyActivity; }
+    public void setEnemyActivity(EnemyActivity enemyActivity) { this.enemyActivity = enemyActivity; }
+    public EnvironmentConditions getEnvironmentConditions() { return environmentConditions; }
+    public void setEnvironmentConditions(EnvironmentConditions environmentConditions) { this.environmentConditions = environmentConditions; }
+    public List<TimelineEvent> getOperationTimeline() { return operationTimeline; }
+    public List<String> getOperationTags() { return operationTags; }
+    public List<String> getSupportUnits() { return supportUnits; }
+    public List<String> getRecommendations() { return recommendations; }
+    public String getNotes() { return notes; }
+    public void setNotes(String notes) { this.notes = notes; }
+    public List<String> getArtifactsRecovered() { return artifactsRecovered; }
+    public List<String> getEvacuationZones() { return evacuationZones; }
+    public List<String> getStatusEffects() { return statusEffects; }
 }

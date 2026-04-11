@@ -1,36 +1,13 @@
 package org.example.model;
 
+import org.example.model.enums.ThreatLevel;
+
 public class Curse {
     private String name;
-    private String threatLevel;
+    private ThreatLevel threatLevel = ThreatLevel.UNKNOWN;
 
-    public Curse() {
-    }
-
-    public Curse(String name, String threatLevel) {
-        this.name = name;
-        this.threatLevel = threatLevel;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getThreatLevel() {
-        return threatLevel;
-    }
-
-    public void setThreatLevel(String threatLevel) {
-        this.threatLevel = threatLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "Проклятие: " + name + " уровень: " + threatLevel + " ";
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public ThreatLevel getThreatLevel() { return threatLevel; }
+    public void setThreatLevel(ThreatLevel threatLevel) { this.threatLevel = threatLevel; }
 }
