@@ -1,4 +1,4 @@
-package org.example.loader.parsers.raw;
+package org.example.loader.parsers.patterns_raw;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

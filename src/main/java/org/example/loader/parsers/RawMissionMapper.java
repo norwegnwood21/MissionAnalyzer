@@ -2,7 +2,7 @@ package org.example.loader.parsers;
 
 import org.example.builder.DefaultMissionBuilder;
 import org.example.builder.MissionDirector;
-import org.example.loader.parsers.raw.*;
+import org.example.loader.parsers.patterns_raw.*;
 import org.example.model.*;
 import org.example.model.enums.*;
 

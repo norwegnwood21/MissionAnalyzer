@@ -3,8 +3,8 @@ package org.example.loader.support;
 import java.io.File;
 import java.io.IOException;
 
-public final class MissionFormatSniffer {
-    private MissionFormatSniffer() {}
+public final class MissionFormatDetector {
+    private MissionFormatDetector() {}
     public static String detect(File file) {
         try {
             String first = FileContentUtils.firstNonBlankLine(file);
@@ -18,3 +18,4 @@ public final class MissionFormatSniffer {
         return "unknown";
     }
 }
+

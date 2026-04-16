@@ -3,7 +3,7 @@ package org.example.loader.parsers;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.example.loader.parsers.raw.MissionRaw;
+import org.example.loader.parsers.patterns_raw.MissionRaw;
 import org.example.model.Mission;
 
 import java.io.File;
