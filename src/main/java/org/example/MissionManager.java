@@ -15,7 +15,24 @@ public class MissionManager {
     private final Scanner scanner = new Scanner(System.in);
     private final MissionLoaderRegistry loaderRegistry = DefaultMissionLoaderRegistryFactory.createDefault();
     private final MissionValidator validator = new MissionValidator();
-    private MissionReportStrategy reportStrategy = new SummaryMissionReportStrategy();
+    private MissionReportStrategy reportStrategy;
+
+    // стратегия по умолчанию
+    public MissionManager() {
+        this.reportStrategy = new SummaryMissionReportStrategy();
+    }
+
+    // конструктор с возможностью сразу задать стратегию
+    public MissionManager(MissionReportStrategy strategy) {
+        this.reportStrategy = strategy;
+    }
+
+
+    public void setReportStrategy(MissionReportStrategy strategy) {
+        if (strategy != null) {
+            this.reportStrategy = strategy;
+        }
+    }
 
     public void start() {
         System.out.println("Введите 0 вместо пути, чтобы выйти");
