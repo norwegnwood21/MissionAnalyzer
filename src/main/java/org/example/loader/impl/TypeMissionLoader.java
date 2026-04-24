@@ -9,7 +9,9 @@ import org.example.model.Mission;
 import java.io.File;
 import java.io.IOException;
 
-public class TypeMissionLoader implements MissionLoader {
+public class
+
+TypeMissionLoader implements MissionLoader {
     private final TypeMissionParser parser = new TypeMissionParser();
     public String getFormatName() { return "type"; }
     public boolean supports(File file) {

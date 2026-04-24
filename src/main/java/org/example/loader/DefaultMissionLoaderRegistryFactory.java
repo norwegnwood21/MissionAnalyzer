@@ -6,10 +6,11 @@ public final class DefaultMissionLoaderRegistryFactory {
     private DefaultMissionLoaderRegistryFactory() {}
     public static MissionLoaderRegistry createDefault() {
         return new MissionLoaderRegistry()
+                .register(new TypeMissionLoader())
                 .register(new JsonMissionLoader())
                 .register(new XmlMissionLoader())
                 .register(new YamlMissionLoader())
-                .register(new TxtMissionLoader())
-                .register(new TypeMissionLoader());
+                .register(new TxtMissionLoader());
+
     }
 }
