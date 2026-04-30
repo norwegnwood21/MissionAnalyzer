@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Archive</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Архив миссий</h1>
+        <p>Клиентское веб-приложение для загрузки, просмотра, отчётов и удаления миссий</p>
+        <div class="links">
+            <a href="/swagger-ui.html" target="_blank">Открыть Swagger</a>
+        </div>
+    </header>
+
+    <main class="grid">
+        <section class="card">
+            <h2>Загрузка миссии</h2>
+            <form id="uploadForm">
+                <input type="file" id="missionFile" required>
+                <button type="submit">Загрузить файл</button>
+            </form>
+            <div id="uploadResult" class="result"></div>
+        </section>
+
+        <section class="card">
+            <h2>Список миссий</h2>
+            <div class="actions">
+                <button id="loadMissionsBtn">Обновить список</button>
+            </div>
+            <div id="missionsList" class="missions-list"></div>
+        </section>
+
+        <section class="card">
+            <h2>Детали миссии</h2>
+            <div class="form-row">
+                <input type="text" id="detailsMissionId" placeholder="Введите missionId">
+                <button id="loadDetailsBtn">Получить детали</button>
+            </div>
+            <pre id="detailsResult" class="result pre"></pre>
+        </section>
+
+        <section class="card">
+            <h2>Отчёт по миссии</h2>
+            <div class="form-row">
+                <input type="text" id="reportMissionId" placeholder="Введите missionId">
+                <select id="reportType">
+                    <option value="summary">summary</option>
+                    <option value="short">short</option>
+                </select>
+                <button id="loadReportBtn">Показать отчёт</button>
+            </div>
+            <pre id="reportResult" class="result pre"></pre>
+        </section>
+
+        <section class="card danger-card">
+            <h2>Удаление миссии</h2>
+            <div class="form-row">
+                <input type="text" id="deleteMissionId" placeholder="Введите missionId">
+                <button id="deleteMissionBtn" class="danger">Удалить</button>
+            </div>
+            <div id="deleteResult" class="result"></div>
+        </section>
+    </main>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

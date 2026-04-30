@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.header {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.header h1 {
+    margin: 0 0 8px 0;
+    font-size: 32px;
+}
+
+.header p {
+    margin: 0 0 12px 0;
+    opacity: 0.95;
+}
+
+.links a {
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 22px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+button {
+    font-size: 15px;
+}
+
+input[type="text"],
+select {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+}
+
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button.danger {
+    background: #dc2626;
+}
+
+button.danger:hover {
+    background: #b91c1c;
+}
+
+.result {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    min-height: 48px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.pre {
+    max-height: 420px;
+    overflow: auto;
+}
+
+.missions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mission-item {
+    padding: 12px;
+    border: 1px solid #dbeafe;
+    background: #eff6ff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.mission-item:hover {
+    background: #dbeafe;
+}
+
+.danger-card {
+    border: 1px solid #fecaca;
+}
